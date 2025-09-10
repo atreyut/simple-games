@@ -9,7 +9,7 @@ i18next.init({
 });
 
 async function loadLanguage(lang) {
-  const response = await fetch(`../locales/${lang}.json`);
+  const response = await fetch(`/simple-games/locales/${lang}.json`);
   const data = await response.json();
   i18next.addResourceBundle(lang, 'translation', data.translation);
 }
@@ -102,7 +102,7 @@ function updateGamePreviewImages() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const response = await fetch('simple-games/locales.json');
+    const response = await fetch('/simple-games/locales.json');
     const supportedLangs = await response.json();
 
     const langPromises = supportedLangs.map(lang => loadLanguage(lang.code));
@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
 });
+
 
 
 
