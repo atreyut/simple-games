@@ -9,7 +9,7 @@ i18next.init({
 });
 
 async function loadLanguage(lang) {
-  const response = await fetch(`../../locales/${lang}.json`);
+  const response = await fetch(`../locales/${lang}.json`);
   const data = await response.json();
   i18next.addResourceBundle(lang, 'translation', data.translation);
 }
@@ -147,3 +147,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
 });
+
