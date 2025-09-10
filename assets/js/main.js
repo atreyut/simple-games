@@ -102,7 +102,7 @@ function updateGamePreviewImages() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const response = await fetch('https://atreyut.github.io/simple-games/locales.json');
+    const response = await fetch('/simple-games/locales.json');
     const supportedLangs = await response.json();
 
     const langPromises = supportedLangs.map(lang => loadLanguage(lang.code));
@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
 });
+
 
 
 
