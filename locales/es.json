@@ -1,0 +1,72 @@
+{
+  "translation": {
+    "themeLightText": "Día",
+    "themeDarkText": "Noche",
+    "themeNight": "🌙 Noche",
+    "themeLight": "☀️ Día",
+    "main_menu": {
+      "title": "Simple Games",
+      "sudoku_title": "Sudoku",
+	  "tictactoe_title": "Gato",
+	  "shroomsweeper_title": "Buscachampiñones"
+    },
+    "sudoku": {
+      "clear": "Limpiar",
+      "gameTitle": "Sudoku",
+      "difficulty": "Dificultad",
+      "easy": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil",
+      "newGame": "Juego nuevo",
+      "check": "Verificar",
+      "notes": "Notas: {{status}}",
+      "on": "Sí",
+      "off": "No",
+      "modeTile": "Modo: Celda",
+      "modeKey": "Modo: Tecla",
+      "congrats": "🎉 ¡Felicidades! ¡Lo resolviste!",
+      "footerHelp": "Teclado: flechas para mover • 1–9 para escribir • Retroceso/Supr para borrar • mantén <kbd>Shift</kbd> o activa Notas (N) para añadir/quitar marcas."
+    },
+	"tictactoe": {
+      "clear": "Limpiar",
+      "footerHelp": "Clic para revelar una casilla. Clic derecho para alternar Bandera (🚩) e Interrogación (❓). La Bandera previene revelar una casilla. <br> Las plantas y animales decorativos no tienen efecto en el juego.",
+	  "gameTitle": "Gato",
+      "difficulty": "Dificultad",
+      "easy": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil",
+      "impossible": "Imposible",
+      "newGame": "Juego nuevo",
+      "turn_player": "Tu turno",
+      "turn_bot": "Turno del bot...",
+      "win_player": "🎉 ¡Ganaste!",
+      "win_bot": "¡Gana el bot!",
+      "draw": "¡Es un empate!",
+	  "2p": "Dos jugadores",
+      "turn_player": "Tu turno",
+      "turn_player1": "Turno del jugador 1 (X)",
+      "turn_player2": "Turno del jugador 2 (O)",
+	  "win_player_num": "🎉 ¡Gana el jugador {{num}}!"
+    },
+	"shroomsweeper": {
+      "gameTitle": "Buscachampiñones",
+	  "longPressMode": "Modo touch: {{status}}",
+      "on": "Sí",
+      "off": "No",
+      "difficulty": "Dificultad",
+      "easy": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil",
+      "custom": "Personalizado",
+      "newGame": "Juego nuevo",
+      "dangers": "Peligros",
+      "timer": "Tiempo",
+      "win": "🎉 ¡Ganaste! 🎉",
+      "lose": "Fin del juego",
+      "custom_settings": "Ajustes personalizados",
+      "width": "Ancho",
+      "height": "Alto",
+      "start": "Iniciar juego"
+    }
+  }
+}

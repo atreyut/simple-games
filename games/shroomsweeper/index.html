@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="shroomsweeper.gameTitle">Shroomsweeper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+      (function() {
+        function applyTheme(isLight) {
+          if (isLight) document.documentElement.classList.add('light');
+          else document.documentElement.classList.remove('light');
+        }
+        const savedTheme = localStorage.getItem('sudoku-theme');
+        if (savedTheme) { applyTheme(savedTheme === 'light'); return; }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          applyTheme(true);
+        }
+      })();
+    </script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="../../" class="header-link">
+                <h1 data-i18n="shroomsweeper.gameTitle">Shroomsweeper</h1>
+            </a>
+            <div class="controls">
+                <label class="control">
+                    <span data-i18n="shroomsweeper.difficulty">Difficulty</span>
+                    <select id="difficulty">
+                        <option value="easy" data-i18n="shroomsweeper.easy">Easy</option>
+                        <option value="medium" selected data-i18n="shroomsweeper.medium">Medium</option>
+                        <option value="hard" data-i18n="shroomsweeper.hard">Hard</option>
+                        <option value="custom" data-i18n="shroomsweeper.custom">Custom</option>
+                    </select>
+                </label>
+                <button id="newGameBtn" class="btn primary" data-i18n="shroomsweeper.newGame">New Game</button>
+                <!-- repurposed toggle: toggles the toolpad (tools mode) -->
+                <button id="longPressToggleBtn" class="btn long-press-toggle"></button>
+                <button id="toggleTheme" class="btn"></button>
+                <div class="lang-selector-wrap btn">
+                    <span>🌐</span>
+                    <select id="lang-selector" title="Change language"></select>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-area">
+            <div id="game-info" class="game-info">
+                <div class="info-box">
+                    <span class="info-label" data-i18n="shroomsweeper.dangers">Dangers</span>
+                    <span id="danger-count" class="info-value">0</span>
+                </div>
+                <div class="info-box">
+                    <span class="info-label" data-i18n="shroomsweeper.timer">Time</span>
+                    <span id="timer" class="info-value">0</span>
+                </div>
+            </div>
+            <div id="board-container" class="board-container">
+                <div id="board" class="board"></div>
+                <div id="game-over-overlay" class="game-over-overlay hidden">
+                    <span id="game-over-text"></span>
+                </div>
+            </div>
+            <footer class="help">
+                <p data-i18n="shroomsweeper.footerHelp"></p>
+            </footer>
+
+            <div id="toolpad" class="toolpad">
+                <button class="btn" data-tool="shovel" title="Shovel">⛏️</button>
+                <button class="btn" data-tool="flag" title="Flag">🚩</button>
+                <button class="btn" data-tool="question" title="Question">❓</button>
+            </div>
+        </main>
+    </div>
+
+    <div id="custom-modal-overlay" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 data-i18n="shroomsweeper.custom_settings">Custom Settings</h2>
+            <div class="slider-group">
+                <label for="width-slider" data-i18n="shroomsweeper.width">Width</label>
+                <input type="range" id="width-slider" min="9" max="35" value="16">
+                <span id="width-value">16</span>
+            </div>
+            <div class="slider-group">
+                <label for="height-slider" data-i18n="shroomsweeper.height">Height</label>
+                <input type="range" id="height-slider" min="9" max="35" value="16">
+                <span id="height-value">16</span>
+            </div>
+            <div class="slider-group">
+                <label for="danger-slider" data-i18n="shroomsweeper.dangers">Dangers</label>
+                <input type="range" id="danger-slider" min="1" max="255" value="40">
+                <span id="danger-value">40</span>
+            </div>
+            <button id="start-custom-game-btn" class="btn primary" data-i18n="shroomsweeper.start">Start Game</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/i18next/i18next.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

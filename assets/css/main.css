@@ -1,0 +1,250 @@
+/* --- Estilos Compartidos --- */
+
+:root {
+  /* Dark mode defaults */
+  --bg:#0e0f12;
+  --panel:#14161b;
+  --panel-2:#171a20;
+  --text:#e9eef7;
+  --muted:#9aa6b2;
+  --accent:#5b8cff;
+  --accent-2:#7aa2ff;
+  --line:#232833;
+  --line-strong: #394250;
+  --good:#2fbf71;
+  --soft-red: #7a1a27;
+  --soft-red-text:#f6d9de;
+  --locked-bg:#11151d;
+  --locked:#b9c5d6;
+  --note:#8a97a8;
+  --shadow:0 8px 30px rgba(0,0,0,.35);
+  --peer-bg:#1a1f29;
+  --selected-bg:#1f2430;
+  --selected-border:#2a3242;
+  --kbd-bg:#0c0d10;
+  --kbd-text:#e9eef7;
+  --win-green-tile: #174d32;    /* tile color when won in dark mode */
+  --win-green-text: #e6f8ef;
+}
+
+:root.light {
+  /* Light mode overrides */
+  --bg:#f6f7fb;
+  --panel:#ffffff;
+  --panel-2:#f1f3f8;
+  --text:#1b1e26;
+  --muted:#555;
+  --accent:#467cff;
+  --accent-2:#6e96ff;
+  --line:#cfd5e1;
+  --line-strong: #a8b2c5;
+  --good:#2aa866;
+  --soft-red:#ffe5e8;
+  --soft-red-text:#7a1a27;
+  --locked-bg:#e3e6ed;
+  --locked:#7a8495;
+  --note:#7d8895;
+  --shadow:0 6px 20px rgba(0,0,0,.15);
+  --peer-bg:#dfe5f2;
+  --selected-bg:#c8d4ee;
+  --selected-border:#92a8d8;
+  --kbd-bg:#e3e6ed;
+  --kbd-text:#1b1e26;
+  --win-green:#bdf0d1;
+  --win-green-tile: #c9fce2;    /* tile color when won in light mode */
+  --win-green-text: #06381a;
+}
+
+body {
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: var(--bg);
+  color: var(--text);
+  transition: background .3s, color .3s;
+}
+
+.app{
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  font-size: clamp(22px, 3vw, 64px);
+  letter-spacing: .5px;
+}
+
+.header-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.controls {
+    justify-content: center;
+  }
+
+.btn{
+  appearance:none;
+  border:none;
+  background:var(--panel);
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  cursor:pointer;
+  transition:.15s transform, .15s filter, .15s background;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  color: white;
+  border: none;
+}
+
+.btn.success {
+  background: linear-gradient(180deg, #49d28e, #2fbf71);
+  color: #0b1a12;
+  border: none;
+}
+
+.lang-selector-wrap {
+  position: relative; /* Permite posicionar el <select> de forma absoluta adentro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px !important; /* Asegura un tamaño consistente con otros botones */
+}
+
+.lang-selector-wrap select {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.lang-selector-wrap select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Lo hace completamente transparente */
+  cursor: pointer; /* Mantiene el cursor de tipo puntero */
+}
+
+.control {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--panel);
+  padding: 8px 10px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+.control select,
+.lang-selector-wrap select {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 10px;
+  outline: none;
+}
+
+/* Estilos para la lista de tarjetas de juegos */
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+}
+
+/* Estilo para cada tarjeta de juego */
+.game-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    text-decoration: none;
+    color: var(--text);
+    overflow: hidden; /* Asegura que la imagen no se salga de las esquinas redondeadas */
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,.2);
+}
+
+/* Contenedor de la vista previa con el SVG */
+.game-preview {
+    background: var(--panel-2);
+    padding: 16px;
+    border-bottom: 1px solid var(--line);
+}
+
+.game-preview img {
+    width: 100%;
+    display: block;
+    border-radius: 8px; /* Redondea el SVG mismo */
+}
+
+/* Título del juego dentro de la tarjeta */
+.game-card h2 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+    font-size: 20px;
+    margin: 0;
+    padding: 16px 20px;
+    text-align: center;
+}
+
+/* --- Ajustes para Móvil --- */
+@media (max-width: 768px) {
+  /* 1. Unifica el estilo del topbar para móvil */
+  .topbar {
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  /* 2. Unifica el estilo de los botones para móvil */
+  .btn-text {
+    display: none;
+  }
+
+  /* 3. Estilo para h1 en móvil */
+  h1 {
+    font-size: clamp(22px, 12vw, 64px);
+  }
+}

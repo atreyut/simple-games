@@ -1,0 +1,244 @@
+/* --- Estilos Específicos de Buscachampiñones --- */
+
+/* Variables de color para los números */
+:root {
+  --num-1: #5b8cff; --num-2: #2fbf71; --num-3: #ffc759; --num-4: #ff965d;
+  --num-5: #ff6b6b; --num-6: #c850e0; --num-7: #8f44fd; --num-8: #343a40;
+}
+:root.light {
+  --num-1: #467cff; --num-2: #2aa866; --num-3: #f7b801; --num-4: #f46a25;
+  --num-5: #d90429; --num-6: #b5179e; --num-7: #6a00f4; --num-8: #343a40;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  width: min(90vw, 800px);
+  padding: 10px 20px;
+  background-color: var(--panel-2);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.info-box {
+  text-align: center;
+}
+.info-label {
+  font-size: 0.9em;
+  color: var(--muted);
+}
+.info-value {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.board-container {
+  position: relative;
+  overflow: auto;
+  max-width: 100%;
+  background-color: var(--locked-bg);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 10px;
+}
+
+.board {
+  display: grid;
+  gap: 3px;
+  /* El resto de estilos visuales ahora están en .board-container */
+}
+
+.cell {
+  width: 28px;
+  height: 28px;
+  background-color: var(--panel-2); /* Color de celda no revelada */
+  border-radius: 4px; /* Redondeado sutil */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cell.unrevealed:hover {
+  background-color: var(--panel); /* Se aclara al color de revelado */
+}
+
+.cell.revealed {
+  background-color: var(--panel); /* Color de celda revelada (blanco) */
+  cursor: default;
+}
+
+.cell.danger {
+  background-color: var(--soft-red);
+  font-size: 1.2em;
+}
+
+.cell.flagged {
+  font-size: 1.2em;
+}
+
+/* Colores de números */
+.cell[data-adjacent="1"] { color: var(--num-1); }
+.cell[data-adjacent="2"] { color: var(--num-2); }
+.cell[data-adjacent="3"] { color: var(--num-3); }
+.cell[data-adjacent="4"] { color: var(--num-4); }
+.cell[data-adjacent="5"] { color: var(--num-5); }
+.cell[data-adjacent="6"] { color: var(--num-6); }
+.cell[data-adjacent="7"] { color: var(--num-7); }
+.cell[data-adjacent="8"] { color: var(--num-8); }
+
+/* Superposición de fin de juego */
+.game-over-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(14, 15, 18, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.game-over-overlay.win {
+  background-color: rgba(47, 191, 113, 0.7);
+}
+.game-over-overlay:not(.hidden) {
+  opacity: 1;
+}
+
+/* Estilos para el Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background-color: var(--panel);
+  padding: 24px 32px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  width: min(90vw, 400px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.slider-group {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+.slider-group label {
+  color: var(--muted);
+}
+.slider-group input[type="range"] {
+  grid-column: 1 / -1;
+}
+
+.hidden { display: none !important; }
+
+/* --- Estilos para Footer y Herramientas Móviles --- */
+
+/* Estilo para la guía de controles (footer) */
+.help {
+  display: block;
+  margin-top: 24px;
+  padding: 0 16px;
+  color: var(--muted);
+  font-size: 0.9em;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Contenedor de herramientas para móvil */
+.toolpad {
+  display: none;
+  position: sticky;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--panel);
+  padding: 8px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  z-index: 100;
+  width: fit-content;
+}
+
+.toolpad .btn {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  background-color: var(--panel-2);
+}
+
+.toolpad .btn.active {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* --- Estilos para el Modo de Pulsación Larga --- */
+
+/* Por defecto, el botón de modo está oculto en escritorio */
+.long-press-toggle {
+  display: none;
+}
+
+/* Cuando el modo de pulsación larga está activo... */
+.long-press-active .toolpad {
+  display: none !important; /* Oculta únicamente las herramientas */
+}
+
+
+/* Media Query para mostrar las herramientas solo en móvil */
+@media (max-width: 768px) {
+  .long-press-toggle {
+    display: block; /* Muestra el botón de modo en móvil */
+  }
+
+  /* Si el modo pulsación larga está activo en móvil, muestra el botón para desactivarlo */
+  .long-press-active .long-press-toggle {
+    display: block !important;
+  }
+  /* Muestra las herramientas en móvil */
+  .toolpad {
+    display: grid;
+  }
+  
+  /* Oculta el footer en móvil */
+  .help {
+    display: none;
+  }
+  h1 {
+    font-size: clamp(22px, 8vw, 64px);
+  }
+}

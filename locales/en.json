@@ -1,0 +1,72 @@
+{
+  "translation": {
+    "themeLightText": "Light",
+    "themeDarkText": "Night",
+    "themeNight": "🌙 Night",
+    "themeLight": "☀️ Light",
+    "main_menu": {
+      "title": "Simple Games",
+      "sudoku_title": "Sudoku",
+      "tictactoe_title": "Tic-Tac-Toe",
+      "shroomsweeper_title": "Shroomsweeper"
+    },
+    "sudoku": {
+      "clear": "Clear",
+      "gameTitle": "Sudoku",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "newGame": "New Game",
+      "check": "Check",
+      "notes": "Notes: {{status}}",
+      "on": "On",
+      "off": "Off",
+      "modeTile": "Mode: Tile",
+      "modeKey": "Mode: Key",
+      "congrats": "🎉 Congratulations! You solved it!",
+      "footerHelp": "Keyboard: arrows to move • 1–9 to enter • Backspace/Delete to erase • hold <kbd>Shift</kbd> or toggle Notes (N) to add/remove pencil marks."
+    },
+    "tictactoe": {
+      "gameTitle": "Tic-Tac-Toe",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "impossible": "Impossible",
+      "newGame": "New Game",
+      "turn_player": "Your Turn",
+      "turn_bot": "Bot's Turn...",
+      "win_player": "🎉 You Win!",
+      "win_bot": "Bot Wins!",
+      "draw": "It's a Draw!",
+      "2p": "2 Players",
+      "turn_player": "Your Turn",
+      "turn_player1": "Player 1's Turn (X)",
+      "turn_player2": "Player 2's Turn (O)",
+    "win_player_num": "🎉 Player {{num}} Wins!"
+    },
+    "shroomsweeper": {
+	  "clear": "Clear",
+      "footerHelp": "Click to reveal a cell. Right-click to cycle Flag (🚩) and Question (❓). The Flag prevents revealing a cell. <br> The decorative plants and animals have no effect on the game.",
+      "gameTitle": "Shroomsweeper",
+	  "longPressMode": "Long Press: {{status}}",
+      "on": "On",
+      "off": "Off",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "custom": "Custom",
+      "newGame": "New Game",
+      "dangers": "Dangers",
+      "timer": "Time",
+      "win": "🎉 You Win! 🎉",
+      "lose": "Game Over",
+      "custom_settings": "Custom Settings",
+      "width": "Width",
+      "height": "Height",
+      "start": "Start Game"
+    }
+  }
+}

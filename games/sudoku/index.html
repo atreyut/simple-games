@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="sudoku.gameTitle">Sudoku</title>
+    <script>
+    (function() {
+    function applyTheme(isLight) {
+      if (isLight) {
+      document.documentElement.classList.add('light');
+      } else {
+      document.documentElement.classList.remove('light');
+      }
+    }
+
+    const savedTheme = localStorage.getItem('sudoku-theme');
+    if (savedTheme) {
+      applyTheme(savedTheme === 'light');
+      return;
+    }
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      applyTheme(true);
+    }
+    })();
+  </script>
+  <link rel="stylesheet" href="../../assets/css/main.css"> <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/i18next/i18next.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a href="../../" class="header-link">
+        <h1 data-i18n="sudoku.gameTitle">Sudoku</h1>
+      </a>
+      <div class="controls">
+        <label class="control">
+          <span data-i18n="sudoku.difficulty">Difficulty</span>
+          <select id="difficulty">
+            <option value="easy" data-i18n="sudoku.easy">Easy</option>
+            <option value="medium" selected data-i18n="sudoku.medium">Medium</option>
+            <option value="hard" data-i18n="sudoku.hard">Hard</option>
+          </select>
+        </label>
+        <button id="newGame" class="btn primary" data-i18n="sudoku.newGame">New Game</button>
+        <button id="toggleMode" class="btn">Mode: Tile</button>
+    <button id="check" class="btn success" data-i18n="sudoku.check" title="Verify answers">Check</button>
+    <button id="clearBtn" class="btn">🧹<span class="btn-text" data-i18n="sudoku.clear">Clear</span></button>
+    <button id="toggleTheme" class="btn">🌙 Night</button>
+        <div class="lang-selector-wrap btn">
+          <span>🌐</span>
+          <select id="lang-selector" title="Cambiar idioma">
+            </select>
+        </div>
+      </div>
+    </header>
+
+    <main class="board-wrap">
+      <div id="board" class="board" role="grid" aria-label="Sudoku board"></div>
+      <div class="numpad">
+        <button class="pad" data-num="1">1</button>
+        <button class="pad" data-num="2">2</button>
+        <button class="pad" data-num="3">3</button>
+        <button class="pad" data-num="4">4</button>
+        <button class="pad" data-num="5">5</button>
+        <button class="pad" data-num="6">6</button>
+        <button class="pad" data-num="7">7</button>
+        <button class="pad" data-num="8">8</button>
+        <button class="pad" data-num="9">9</button>
+        <div class="numpad-actions">
+          <button class="pad" id="padErase">⌫</button>
+          <button class="pad" id="padNotes">✎</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="help">
+      <p data-i18n="sudoku.footerHelp"></p>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/i18next/i18next.js"></script>
+  <script src="../../assets/js/main.js"></script> <script src="app.js"></script>
+  
+</body>
+</html>

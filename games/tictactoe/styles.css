@@ -1,0 +1,106 @@
+/* --- Estilos Específicos de Tic-Tac-Toe --- */
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.game-status {
+  margin-bottom: 24px;
+  font-size: 1.2rem;
+  color: var(--muted);
+  min-height: 1.5em; /* Evita que el layout salte al cambiar el texto */
+  text-align: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min(90vw, 450px);
+  aspect-ratio: 1 / 1;
+  gap: 10px;
+  background-color: var(--peer-bg);
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+}
+
+.cell {
+  background-color: var(--panel-2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Varela Round', sans-serif;
+  font-size: clamp(2.5rem, 15vw, 5rem);
+  font-weight: 300;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: clamp(60px, 25vw, 130px);  /* Ligeramente ajustado */
+  min-height: clamp(60px, 25vw, 130px);
+}
+
+.cell span {
+  display: inline-block;
+  transform: translateY(3px);
+}
+
+.cell:not(.occupied):hover {
+  background-color: var(--panel);
+}
+
+.cell.occupied {
+  cursor: default;
+}
+
+/* Colores para X y O */
+.cell[data-content="X"] {
+  color: var(--accent);
+}
+.cell[data-content="O"] {
+  color: var(--text);
+}
+
+/* Estilo para celdas ganadoras */
+.cell.winner {
+  background-color: var(--good);
+  color: #fff !important; /* Asegura que el color sea blanco sobre el fondo verde */
+  transform: scale(1.05);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* --- Estilos para el Selector de Jugador (X/O) --- */
+
+/* 1. Ajusta el tamaño para que coincida con el selector de dificultad */
+.player-select .btn {
+  padding-top: 6px; /* Para que la altura coincida con el selector */
+  padding-bottom: 6px; /* Para que la altura coincida con el selector */
+  transition: background-color 0.2s, color 0.2s, filter 0.2s; /* Transiciones suaves */
+}
+
+/* 2. Estilo base para los botones no seleccionados (parecidos a los números del numpad sin seleccionar) */
+.player-select .btn:not(.active) {
+  background-color: var(--panel-2); /* Color de fondo normal del panel */
+  color: var(--text); /* Color de texto normal */
+  filter: none; /* Sin filtro */
+}
+
+/* 3. Estilo del botón seleccionado (igual que el número seleccionado en el numpad de Sudoku) */
+.player-select .btn.active {
+  background: linear-gradient(180deg, #49d28e, #2fbf71); /* <-- AÑADIDO: Degradado específico */
+  color: var(--accent-text); /* Color de texto que contraste con el degradado (suele ser blanco) */
+  filter: brightness(1); /* Asegura brillo normal si hay filtros heredados */
+}
+
+/* 4. Efecto hover para el botón seleccionado (como en el numpad de Sudoku) */
+.player-select .btn.active:hover {
+  filter: brightness(1.2); /* Hace que el color de acento se vea más claro/blanquecino al hacer hover */
+}
+
+/* 5. Efecto hover para los botones no seleccionados */
+.player-select .btn:not(.active):hover {
+  filter: brightness(1.1); /* Ligeramente más claro al hacer hover */
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title data-i18n="main_menu.title">Simple Games</title>
+	<script>
+	  (function() {
+		function applyTheme(isLight) {
+		  if (isLight) {
+			document.documentElement.classList.add('light');
+		  } else {
+			document.documentElement.classList.remove('light');
+		  }
+		}
+
+		const savedTheme = localStorage.getItem('sudoku-theme');
+		if (savedTheme) {
+		  applyTheme(savedTheme === 'light');
+		  return;
+		}
+
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+		  applyTheme(true);
+		}
+	  })();
+	</script>
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="app">
+		<header class="topbar">
+			<h1 data-i18n="main_menu.title">Simple Games</h1>
+			<div class="controls">
+				<button id="toggleTheme" class="btn"></button>
+				<div class="lang-selector-wrap btn">
+					<span>🌐</span>
+					<select id="lang-selector" title="Change language"></select>
+				</div>
+			</div>
+		</header>
+
+		<main class="game-list">
+			<a href="games/sudoku" class="game-card">
+				<div class="game-preview">
+					<img src="assets/svg/sudoku-light.svg" alt="Sudoku Preview"
+						class="game-preview-image"
+						data-src-light="assets/svg/sudoku-light.svg"
+						data-src-dark="assets/svg/sudoku-dark.svg" />
+				</div>
+				<h2 data-i18n="main_menu.sudoku_title">Sudoku</h2>
+			</a>
+			<a href="games/tictactoe" class="game-card">
+				<div class="game-preview">
+					<img src="assets/svg/tictactoe-light.svg" alt="Tic-Tac-Toe Preview"
+						class="game-preview-image"
+						data-src-light="assets/svg/tictactoe-light.svg"
+						data-src-dark="assets/svg/tictactoe-dark.svg" />
+				</div>
+				<h2 data-i18n="main_menu.tictactoe_title">Tic-Tac-Toe</h2>
+			</a>
+			<a href="games/shroomsweeper/" class="game-card">
+				<div class="game-preview">
+					<img src="assets/svg/shroomsweeper-light.svg" alt="Shroomsweeper Preview"
+						 class="game-preview-image"
+						 data-src-light="assets/svg/shroomsweeper-light.svg"
+						 data-src-dark="assets/svg/shroomsweeper-dark.svg" />
+				</div>
+				<h2 data-i18n="main_menu.shroomsweeper_title">Shroomsweeper</h2>
+			</a>
+
+			</main>
+	</div>
+
+	<script src="https://unpkg.com/i18next/i18next.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+</html>

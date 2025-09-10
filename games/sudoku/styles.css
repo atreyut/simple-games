@@ -1,0 +1,217 @@
+/* --- Estilos Específicos del Juego de Sudoku --- */
+
+/* Contenedor principal del tablero y el numpad */
+.board-wrap {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 18px;
+}
+
+/* Tablero de Sudoku */
+.board {
+  width: min(92vw, 680px);
+  aspect-ratio: 1 / 1;
+  background: var(--panel);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Celdas individuales del tablero */
+.cell {
+  position: relative;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(18px, 3.3vw, 28px);
+  user-select: none;
+  cursor: pointer;
+  background: var(--panel-2);
+  transition: background-color .28s ease, color .28s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+/* Estilos de estado para las celdas */
+.cell.locked {
+  background: var(--locked-bg);
+  color: var(--locked);
+  font-weight: 700;
+}
+.cell.selected {
+  background: var(--selected-bg);
+  box-shadow: inset 0 0 0 2px var(--selected-border);
+}
+.cell.highlight {
+  background-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--accent);
+}
+
+.cell.locked.highlight {
+  font-weight: 900;
+}
+
+.cell.peer.highlight,
+.cell.selected.highlight {
+    background-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    color: var(--accent);
+}
+.cell.selected:not(.locked).highlight {
+  box-shadow: inset 0 0 0 2px var(--selected-border); /* Mantiene el borde de selección */
+}
+.cell.peer {
+  background: var(--peer-bg);
+}
+.cell.mistake {
+  background: var(--soft-red);
+  color: var(--soft-red-text);
+}
+
+.cell.mistake.highlight {
+  background: var(--soft-red);
+  color: var(--soft-red-text);
+}
+
+.cell.won-tile {
+  background: var(--win-green-tile);
+  color: var(--win-green-text);
+  transform: scale(1.03);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.18);
+}
+
+/* Bordes gruesos de las cajas 3x3 */
+.cell[data-r="2"], .cell[data-r="5"] {
+  border-bottom-width: 2px; /* Mantenemos el grosor, el estilo hará el trabajo */
+  border-bottom-color: var(--line-strong); /* Usamos un color más fuerte */
+}
+.cell[data-c="2"], .cell[data-c="5"] {
+  border-right-width: 2px; /* Mantenemos el grosor, el estilo hará el trabajo */
+  border-right-color: var(--line-strong); /* Usamos un color más fuerte */
+}
+
+/* Cuadrícula para las notas (lápiz) */
+.notes {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
+  padding: 6%;
+  pointer-events: none;
+}
+.note {
+  font-size: clamp(8px, 1.2vw, 12px);
+  color: var(--note);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .9;
+}
+
+/* Teclado numérico (numpad) */
+.numpad {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: fit-content;
+  box-shadow: var(--shadow);
+}
+.pad {
+  border: none;
+  padding: 16px 0;
+  border-radius: 14px;
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid var(--line);
+}
+.pad:hover {
+  filter: brightness(1.1);
+}
+.pad.disabled {
+  opacity: .35;
+  cursor: default;
+  pointer-events: none;
+}
+.pad.primary {
+  background: linear-gradient(180deg, #49d28e, #2fbf71);
+  color: #0b1a12;
+}
+.numpad-actions {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 10px;
+}
+
+/* Pie de página con ayuda y mensaje de felicitaciones */
+.help {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+kbd {
+  display: inline-block;
+  background: var(--kbd-bg);
+  color: var(--kbd-text);
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.congrats {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.9);
+  background: var(--panel);
+  color: var(--text);
+  padding: 24px 32px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity .3s ease, transform .3s ease;
+  z-index: 2000;
+}
+.congrats.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- Media Queries Específicas del Juego --- */
+
+/* Layout para pantallas más pequeñas que el tablero + numpad */
+@media (max-width: 880px) {
+  .board-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Layout para móviles */
+@media (max-width: 768px) {
+  /* Layout de los botones de acción del numpad */
+  .numpad-actions {
+    display: flex;
+  }
+  .numpad-actions > .pad {
+    flex: 1;
+  }
+
+  /* Oculta las instrucciones (footer) */
+  .help {
+    display: none;
+  }
+}
